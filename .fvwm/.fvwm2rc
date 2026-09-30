@@ -1,0 +1,191 @@
+# =====================================================================
+#                 FVWM2/FVWM3 终极 CDE & Motif 复古风格配置文件
+# =====================================================================
+
+# =====================================================================
+# 1. 经典 CDE "Crimson" 核心撞色色盘 (Colorset 语法)
+# =====================================================================
+CleanupColorsets
+
+# Colorset 1: 非活动窗口 (CDE 经典低调冷墨绿)
+# 前景: 灰白 | 背景: #36524d | 3D高亮边: #577d76 | 3D阴影边: #1c2b29
+Colorset 1 Fore #e0e0e0, Back #36524d, Hilight #577d76, Shade #1c2b29
+
+# Colorset 2: 活动聚焦窗口 (CDE 经典明艳复古粉红/锦葵紫)
+# 前景: 纯白 | 背景: #b24d7a | 3D高亮边: #e58ca3 | 3D阴影边: #661f3d
+Colorset 2 Fore white, Back #b24d7a, Hilight #e58ca3, Shade #661f3d
+
+# Colorset 3: 系统菜单与全局弹窗 (维持经典墨绿，与非活动边框呼应)
+Colorset 3 Fore white, Back #36524d, Hilight #577d76, Shade #1c2b29
+
+# =====================================================================
+# 2. 窗口管理器基础架构与核心机制
+# =====================================================================
+# 应用色盘：非活动为墨绿(1)，活动聚焦为粉红(2)
+Style * Colorset 1, HilightColorset 2
+
+# 开启 7 像素的经典 Motif 3D 浮雕粗边框
+Style * BorderWidth 5, HandleWidth 5
+Style * MWMDecor
+Style * MWMButtons, HintOverride
+
+# 更改焦点策略为点击激活，防止 XQuartz 环境下窗口乱跳
+Style * ClickToFocus
+
+# 抗锯齿现代 Xft 字体注入，解决旧版 Helvetica 及编码缺失报错
+Style * Font "xft:Sans-Serif:bold:size=11"
+MenuStyle * Font "xft:Sans-Serif:size=11"
+
+# =====================================================================
+# 3. 完美复刻 Motif 原生 3D 矢量按钮 (带点击下陷反馈)
+# =====================================================================
+# 按钮编号定义：1=左侧系统菜单, 2=右上最大化, 4=右上最小化/折叠
+ButtonStyle Reset
+ButtonStyle All ActiveUp   -- Flat
+ButtonStyle All ActiveDown -- Flat
+ButtonStyle All Inactive   -- Flat
+
+# 左侧 1 号按钮：CDE 经典的“横向单条 3D 凸起”系统菜单键
+ButtonStyle 1 ActiveUp   (5 20x45@1 20x55@0 80x55@0 80x45@0 20x45@1)
+ButtonStyle 1 ActiveDown (5 20x45@0 20x55@1 80x55@1 80x45@1 20x45@0)
+ButtonStyle 1 Inactive   (5 20x45@1 20x55@0 80x55@0 80x45@0 20x45@1)
+
+# 右侧 4 号按钮：Motif 经典的“3D立体下凹小方块”
+ButtonStyle 4 ActiveUp   (5 40x40@0 40x60@1 60x60@1 60x40@1 40x40@0)
+ButtonStyle 4 ActiveDown (5 40x40@1 40x60@0 60x60@0 60x40@0 40x40@1)
+ButtonStyle 4 Inactive   (5 40x40@0 40x60@1 60x60@1 60x40@1 40x40@0)
+ButtonStyle 4 - MwmDecorMin
+
+# 右侧 2 号按钮：Motif 经典的“3D立体空心大方框”
+ButtonStyle 2 ActiveUp   (5 30x30@0 30x70@1 70x70@1 70x30@1 30x30@0)
+ButtonStyle 2 ActiveDown (5 30x30@1 30x70@0 70x70@0 70x30@0 30x30@1)
+ButtonStyle 2 Inactive   (5 30x30@0 30x70@1 70x70@1 70x30@1 30x30@0)
+
+ButtonStyle 2 ToggledActiveUp   (5 20x20@1 20x80@0 80x80@0 80x20@0 20x20@1)
+ButtonStyle 2 ToggledActiveDown (5 20x20@0 20x80@1 80x80@1 80x20@1 20x20@0)
+ButtonStyle 2 ToggledInactive   (5 20x20@1 20x80@0 80x80@0 80x20@0 20x20@1)
+
+ButtonStyle 2 - MwmDecorMax
+
+# =====================================================================
+# 4. 极致顺滑的极客键盘与鼠标交互绑定
+# =====================================================================
+# --- 鼠标对窗口组件的点击绑定 ---
+# 单击左上角 1 号键：原地弹出系统菜单，双击关闭
+
+DestroyFunc MyOneClick
+AddToFunc   MyOneClick
++ C Menu WindowMenu
++ D Close
+Mouse 1 1   A   MyOneClick 
+
+# 点击右上角 2 号键：单屏完美最大化（扣除底部 40 像素安全区，绝不越界横跨双屏）
+Mouse 1 2   A   Maximize 100 100 -0p -40p
+
+# 点击右上角 4 号键最小化
+Mouse 1 4   A   Iconify
+
+# “双击标题栏(T)”，触发百叶窗折叠
+DestroyFunc MyTitleClick
+AddToFunc   MyTitleClick
++ C Next
++ D WindowShade
++ M Move
+Mouse 1 T   A   MyTitleClick
+
+# 在窗口标题栏(T)或边框(F)上点击右键(3)，随时随地弹出窗口菜单
+Mouse 3 T   A   Menu WindowMenu
+Mouse 3 F   A   Menu WindowMenu
+
+# 在最小化图标 (I) 上使用鼠标左键 (1) 点击时，瞬间恢复窗口大小
+Mouse 1 I   A   Iconify
+
+# 在Pager或者Root上点击右键，弹出系统菜单
+Mouse 3 W M Menu MenuFvwmRoot
+Mouse 3 R A Menu MenuFvwmRoot
+
+# --- 全局快捷键流 (Key Bindings) ---
+# 现代习惯：Ctrl + Tab 完美在各个窗口间循环切换焦点，边框粉绿交替闪烁
+Key Tab A C WindowList CurrentAtEnd, IconifiedAtEnd
+
+# =====================================================================
+# 5. 经典 CDE 风格：最右侧虚拟桌面分页器 (FvwmPager)
+# =====================================================================
+Colorset 4 Fore #e0e0e0, Back #36524d, Hilight #577d76, Shade #1c2b29
+Colorset 5 Fore white, Back #b24d7a, Hilight #e58ca3, Shade #661f3d
+
+Style FvwmPager* Sticky, NoTitle, StaysOnTop, NoHandles, WindowListSkip
+*FvwmPager: Colorset * 4
+*FvwmPager: HilightColorset * 5
+*FvwmPager: Font "xft:Sans-Serif:size=10"
+*FvwmPager: SmallFont "xft:Sans-Serif:size=9"
+*FvwmPager: WindowColorsets 4 5
+# 纵向排列 2 个虚拟桌面网格，精准钉在屏幕最右侧中间 (-0 像素)
+*FvwmPager: Rows 2
+*FvwmPager: Columns 1
+*FvwmPager: Geometry 100x200-0+200
+*FvwmPager: Label 0 "工作"
+*FvwmPager: Label 1 "娱乐"
+DesktopSize 1x1
+
+# =====================================================================
+# 6. 最小化图标安全排队盒子 (完全兼容 FVWM3 现代语法)
+# =====================================================================
+# IconBox -120 +60 -0 -0：
+#   * -120 代表左边界起始于距离屏幕右边缘 120 像素处（留出给 Pager 和图标本身的横向空间）
+#   * +60  代表顶边界距离屏幕最顶端 60 像素（完美避开 macOS 的顶栏状态栏）
+#   * -0 -0 代表限制底部和右边缘的绝对边界
+# IconFill right top：
+#   * 强制图标首要向右对齐，次要向上靠拢，从而在右上角整齐排队，绝不乱跑
+Style * IconBox -120 +60 -0 -0, IconGrid 20 20, IconFill right top
+Style * IconTitle, IconTitleRelief 3
+Style * Icon
+
+# =====================================================================
+# 7. 经典的 CDE 系统菜单 (WindowMenu) 定义
+# =====================================================================
+MenuStyle * MenuColorset 3, ActiveColorset 2
+MenuStyle * SideColor #1c2b29
+MenuStyle * Font "xft:monospace:size=10"
+MenuStyle * TitleFont "xft:monospace:size=10" 
+
+DestroyMenu WindowMenu
+AddToMenu WindowMenu "窗口控制"    Title
++                    " 还原        (&R)"   Maximize 0
++                    " 移动        (&M)"   Move
++                    " 大小        (&S)"   Resize
++                    " 折叠        (&H)"   WindowShade
++                    " 最小化      (&M)"   Iconify
++                    " 最大化      (&X)"   Maximize 100 100 -0p -40p
++                    " 移动到      (&m)"   Popup MenuSendToDesk
++                    " 固定桌面    (&s)"   Stick True
++                    " 取消固定    (&U)"   Stick False
++                    ""                    Nop
++                    " 关闭        (&C)"   Close
+
+DestroyMenu MenuSendToDesk
+AddToMenu MenuSendToDesk "移动到桌面" Title
++ "桌面 工作        (&0)"        MoveToDesk 0 0
++ "桌面 娱乐        (&1)"        MoveToDesk 0 1
+
+DestroyMenu MenuFvwmRoot
+AddToMenu MenuFvwmRoot "桌面主菜单" Title
++                      " 打开 Xterm    (&T)"        Exec xterm &
++                      " 打开 Urxvt    (&U)"        Exec urxvt &
++                      " 打开 Emacs    (&E)"        Exec emacsclient -c &
++                      " 打开 XFile    (&F)"        Exec xfile &
++                      " 打开 XNEdit   (&N)"        Exec xnedit &
++                      ""                               Nop
++                      " 刷新桌面屏幕  (&L)"        Refresh
++                      " 重新加载配置  (&R)"        Restart
++                      ""                               Nop
++                      " 安全退出 X11  (&Q)"        Quit
+
+
+# =====================================================================
+# 8. 系统初始化自动加载组件
+# =====================================================================
+DestroyFunc StartFunction
+AddToFunc StartFunction
++ I Module FvwmPager 0 1
+

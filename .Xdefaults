@@ -1,0 +1,340 @@
+!
+! 全局默认字体
+!
+*renderTable: default
+*renderTable.default.fontType: FONT_IS_XFT
+*renderTable.default.fontName: Sans-Serif
+*renderTable.default.fontSize: 10
+*renderTable.default.fontStyle: Regular
+
+! ==============================================================================
+! EMWM (emwm) 
+! ==============================================================================
+
+#define base_bg       #36524d
+#define base_fg       #ffffff
+#define active_bg     #b24d7a
+#define active_fg     #ffffff
+#define active_shadow_dark   #661f3d
+#define active_shadow_light  #e58ca3
+#define shadow_dark   #1c2b29
+#define shadow_light  #577d76
+
+!!
+! Fonts
+!!
+
+!! Render Tables
+!!! Emwm
+!!!! Default
+Emwm*renderTable.default.fontType: FONT_IS_XFT
+Emwm*renderTable.default.fontName: fixed
+Emwm*renderTable.default.fontSize: 11
+Emwm*renderTable.default.fontStyle: Regular
+!!!! Serif Font
+Emwm*renderTable.serif.fontType: FONT_IS_XFT
+Emwm*renderTable.serif.fontName: fixed
+Emwm*renderTable.serif.fontSize: 11
+Emwm*renderTable.serif.fontStyle: Regular
+!!!! Fixed Font
+Emwm*renderTable.fixed.fontType: FONT_IS_XFT
+Emwm*renderTable.fixed.fontName: fixed
+Emwm*renderTable.fixed.fontSize: 11
+Emwm*renderTable.fixed.fontStyle: Medium
+!!!! Small Font
+Emwm*renderTable.small.fontType: FONT_IS_XFT
+Emwm*renderTable.small.fontName: fixed
+Emwm*renderTable.small.fontSize: 10
+Emwm*renderTable.small.fontStyle: Regular
+!!! XmSm
+!!!! Default
+XmSm*renderTable.default.fontType: FONT_IS_XFT
+XmSm*renderTable.default.fontName: fixed
+XmSm*renderTable.default.fontSize: 11
+XmSm*renderTable.default.fontStyle: Regular
+!!!! Serif Font
+XmSm*renderTable.serif.fontType: FONT_IS_XFT
+XmSm*renderTable.serif.fontName: FreeSerif
+XmSm*renderTable.serif.fontSize: 11
+XmSm*renderTable.serif.fontStyle: Regular
+!!!! Fixed Font
+XmSm*renderTable.fixed.fontType: FONT_IS_XFT
+XmSm*renderTable.fixed.fontName: fixed
+XmSm*renderTable.fixed.fontSize: 11
+XmSm*renderTable.fixed.fontStyle: Medium
+!!!! Small Font
+XmSm*renderTable.small.fontType: FONT_IS_XFT
+XmSm*renderTable.small.fontName: fixed
+XmSm*renderTable.small.fontSize: 10
+XmSm*renderTable.small.fontStyle: Regular
+!!! XmToolbox
+!!!! Default
+XmToolbox*renderTable.default.fontType: FONT_IS_XFT
+XmToolbox*renderTable.default.fontName: fixed
+XmToolbox*renderTable.default.fontSize: 11
+XmToolbox*renderTable.default.fontStyle: Regular
+!!!! Serif Font
+XmToolbox*renderTable.serif.fontType: FONT_IS_XFT
+XmToolbox*renderTable.serif.fontName: FreeSerif
+XmToolbox*renderTable.serif.fontSize: 11
+XmToolbox*renderTable.serif.fontStyle: Regular
+!!!! Fixed Font
+XmToolbox*renderTable.fixed.fontType: FONT_IS_XFT
+XmToolbox*renderTable.fixed.fontName: fixed
+XmToolbox*renderTable.fixed.fontSize: 11
+XmToolbox*renderTable.fixed.fontStyle: Medium
+!!!! Small Font
+XmToolbox*renderTable.small.fontType: FONT_IS_XFT
+XmToolbox*renderTable.small.fontName: fixed
+XmToolbox*renderTable.small.fontSize: 11
+XmToolbox*renderTable.small.fontStyle: Regular
+
+!! Class Settings
+!!! Default Font
+Emwm*renderTable: default
+XmSm*renderTable: default
+XmToolbox*renderTable: default
+!!! Title Render Table
+Emwm*title.renderTable: default
+XmSm*title.renderTable: default
+XmToolbox*title.renderTable: small
+!!! Icon label font
+Emwm*icon.renderTable: small
+XmSm*icon.renderTable: small
+XmToolbox*icon.renderTable: small
+!!! Dialog Font
+Emwm*dialog.renderTable: default
+XmSm*dialog.renderTable: default
+XmToolbox*dialog.renderTable: small
+!!! Text Input Font
+Emwm*XmText.renderTable: fixed
+Emwm*XmTextField.renderTable: fixed
+XmSm*XmText.renderTable: fixed
+XmSm*XmText.renderTable: fixed
+XmToolbox*XmTextField.renderTable: fixed
+XmToolbox*XmTextField.renderTable: fixed
+!!! Menu Font
+Emwm*XmPushButtonGadget.renderTable: default
+XmSm*XmPushButtonGadget.renderTable: default
+XmToolbox*XmPushButtonGadget.renderTable: small
+!!! Cascade Menu Font
+Emwm*XmCascadeButtonGadget.renderTable: small
+XmSm*XmCascadeButtonGadget.renderTable: small
+XmToolbox*XmCascadeButtonGadget.renderTable: small
+!!! Date/Time Font
+Emwm*dateTime.renderTable: small
+XmSm*dateTime.renderTable: small
+XmToolbox*dateTime.renderTable: small
+
+!!
+! Window Manager Colors
+!!
+Emwm*background:                active_bg
+Emwm*foreground:                active_fg
+Emwm*activeBackground:          active_bg
+Emwm*activeForeground:          active_fg
+Emwm*inactiveBackground:        base_bg
+Emwm*inactiveForeground:        base_fg
+
+Emwm*client*background:         base_bg
+Emwm*client*foreground:         base_fg
+Emwm*client*activeBackground:   active_bg
+Emwm*client*activeForeground:   active_fg
+Emwm*client*topShadowColor:     shadow_light
+Emwm*client*bottomShadowColor:  shadow_dark
+Emwm*client*activeTopShadowColor: active_shadow_light
+Emwm*client*activeBottomShadowColor:  active_shadow_dark
+
+!Emwm*activeClient*topShadowColor:     inactive_shadow_light
+!Emwm*activeClient*bottomShadowColor:  inactive_shadow_dark
+!Emwm*inactiveClient*topShadowColor:   inactive_shadow_dark
+!Emwm*inactiveClient*bottomShadowColor: inactive_shadow_light
+
+!!
+! Icon Appearance
+!!
+Emwm*iconImageBackground:       base_bg
+Emwm*iconImageForeground:       base_fg
+Emwm*iconImageTopShadowColor:   shadow_light
+Emwm*iconImageBottomShadowColor: shadow_dark
+Emwm*activeIconImageBackground: active_bg
+Emwm*activeIconImageForeground: active_fg
+Emwm*activeIconImageTopShadowColor: active_shadow_light
+Emwm*activeIconImageBottomShadowColor: active_shadow_dark
+
+Emwm*iconBox*background:        base_bg
+Emwm*iconBox*foreground:        base_fg
+Emwm*icon*foreground:           base_fg
+Emwm*icon*background:           base_bg
+Emwm*icon*activeForeground:     active_fg
+Emwm*icon*activeBackground:     active_bg
+Emwm*iconPlacement.grid:        False
+Emwm*iconSnap:                  8
+Emwm*useIconBox:                False
+
+!!
+! Menu Styling
+!!
+Emwm*menu*background:           active_bg
+Emwm*menu*foreground:           active_fg
+Emwm*menu*highlightColor:       active_fg
+Emwm*menu*selectionBackground:  base_bg
+Emwm*menu*separator*background: shadow_light
+Emwm*menu*popupDelay:           250
+XmSm*menuBar*background:        base_bg
+
+!!
+! Scrollbar Appearance
+!!
+!*XmScrollBar.background:        base_bg
+!*XmScrollBar.troughColor:       base_bg
+!*XmScrollBar.foreground:        active_shadow_light
+!*XmScrollBar.width:             14
+!*XmScrollBar.showArrows:        True
+!*XmScrollBar.sliderColor:       active_bg
+
+!!
+! Text + List Backgrounds
+!!
+!*XmText*background:             text_bg
+!*XmText*foreground:             text_fg
+!*XmTextField*background:        text_bg
+!*XmTextField*foreground:        text_fg
+!*XmList*background:             list_bg
+!*XmList*foreground:             list_fg
+
+!!
+! Behavior + UX Tweaks
+!!
+Emwm*clientAutoPlace:           True
+Emwm*moveOpaque:                True
+Emwm*resizeOpaque:              True
+!Emwm*limitResize:               True
+!Emwm*keyboardFocusPolicy:       EXPLICIT
+Emwm*enableDesktop:             False
+Emwm*enableTaskbar:             False
+
+Emwm*primaryXineramaScreen: 0
+
+Emwm*xineramaIconifyToPrimary: True 
+
+Emwm*useRootWindow: False
+
+! ==============================================================================
+! rxvt-unicode (urxvt) 
+! ==============================================================================
+
+! --- 字体与渲染 (Xft 现代字体支持) ---
+! 推荐安装 "DejaVu Sans Mono" 和 "WenQuanYi Micro Hei" (文泉驿微米黑) 以完美显示中文
+urxvt*font:                  xft:Ubuntu Mono:size=16,xft:Maple Mono NF CN:size=16
+urxvt*boldFont:              xft:Ubuntu Mono:bold:size=16,xft:Maple Mono NF CN:size=16
+! 字符间距微调：防止部分英文字体或中文字体在 urxvt 中因字宽计算错误产生重叠
+urxvt*letterSpace:           -1
+
+! --- 基础窗口与滚动条设置 ---
+urxvt*depth:                 32
+urxvt*geometry:              90x25
+urxvt*loginShell:            true
+urxvt*internalBorder:        8
+urxvt*scrollBar:             false
+urxvt*scrollBar_right:       false
+urxvt*scrollTtyOutput:       false
+urxvt*scrollWithBuffer:      true
+urxvt*scrollKeypress:        true
+urxvt*saveLines:             10000
+
+! --- 扩展与功能 (Perl Extensions) ---
+! 启用原生 URL 点击跳转、用键盘快捷键自由复制/选择文本
+urxvt*perl-ext-common:       default,matcher
+! 点击 URL 自动使用系统默认浏览器打开
+urxvt*url-launcher:          surf
+urxvt*matcher.button:        1
+
+! --- 快捷键映射 (键盘增强) ---
+! 仿现代终端快捷键：Command+C 复制，Command+V 粘贴
+urxvt*keysym.M-c:           eval:selection_to_clipboard
+urxvt*keysym.M-v:           eval:paste_clipboard
+! --- 优雅现代暗色调配色 (Nord 配色方案) ---
+urxvt*background:            #2e3440
+urxvt*foreground:            #d8dee9
+urxvt*cursorColor:           #88c0d0
+urxvt*cursorColor2:          #2e3440
+urxvt*pointerColorBackground:#2e3440
+urxvt*pointerColorForeground:#88c0d0
+
+urxvt*termName: xterm-256color
+
+! 终端 16 色配置
+! black
+urxvt*color0:                #3b4252
+urxvt*color8:                #4c566a
+! red
+urxvt*color1:                #bf616a
+urxvt*color9:                #bf616a
+! green
+urxvt*color2:                #a3be8c
+urxvt*color10:               #a3be8c
+! yellow
+urxvt*color3:                #ebcb8b
+urxvt*color11:               #ebcb8b
+! blue
+urxvt*color4:                #81a1c1
+urxvt*color12:               #81a1c1
+! magenta
+urxvt*color5:                #b48ead
+urxvt*color13:               #b48ead
+! cyan
+urxvt*color6:                #88c0d0
+urxvt*color14:               #8fbcbb
+! white
+urxvt*color7:                #e5e9f0
+urxvt*color15:               #eceff4
+
+! ==============================================================================
+! xfile 
+! ==============================================================================
+
+!! Add xterm to the Tools menu
+XFile.tools.terminal: urxvt
+XFile*toolsMenu.terminal.labelString: Terminal
+XFile*toolsMenu.terminal.mnemonic: T
+XFile*toolsMenu.terminal.acceleratorText: F12
+XFile*toolsMenu.terminal.accelerator: <Key>F12
+!! Make sure it remains the first menu item
+XFile*toolsMenu.terminal.positionIndex: 0
+
+!-----------------------------------------------------------------------------
+! Environment variables used by the file type database
+!-----------------------------------------------------------------------------
+XFile.variable.terminal: urxvt -cd
+XFile.variable.textEditor: xnedit
+XFile.variable.imageViewer: nsxiv
+XFile.variable.imageEditor: xpaint
+XFile.variable.audioPlayer: mplayer
+XFile.variable.videoPlayer: mplayer
+XFile.variable.pdfViewer: gv
+XFile.variable.webBrowser: surf
+
+XFile*FileList.renderTable: regular directory symlink special
+
+! Directories
+XFile*FileList.renderTable.directory.fontType: FONT_IS_XFT
+XFile*FileList.renderTable.directory.fontName: Sans-Serif
+XFile*FileList.renderTable.directory.fontSize: 10
+
+! Regular files
+XFile*FileList.renderTable.regular.fontType: FONT_IS_XFT
+XFile*FileList.renderTable.regular.fontName: Sans-Serif
+XFile*FileList.renderTable.regular.fontSize: 10
+
+! Symbolic links
+XFile*FileList.renderTable.symlink.fontType: FONT_IS_XFT
+XFile*FileList.renderTable.symlink.fontName: Sans-Serif
+XFile*FileList.renderTable.symlink.fontStyle: Italic
+XFile*FileList.renderTable.symlink.fontSize: 10
+
+! Special files
+XFile*FileList.renderTable.special.fontType: FONT_IS_XFT
+XFile*FileList.renderTable.special.fontName: Sans-Serif
+XFile*FileList.renderTable.special.fontStyle: Bold
+XFile*FileList.renderTable.special.fontSize: 10
