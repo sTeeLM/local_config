@@ -134,7 +134,7 @@ DestroyModuleConfig FvwmPager:*
 # 纵向排列 2 个虚拟桌面网格，精准钉在屏幕最右侧中间 (-0 像素)
 *FvwmPager: Rows 2
 *FvwmPager: Columns 1
-*FvwmPager: Geometry 100x200-0+20
+*FvwmPager: Geometry 100x200-0+40
 *FvwmPager: Label 0 "工作"
 *FvwmPager: Label 1 "娱乐"
 
@@ -165,6 +165,7 @@ Style xterm IconOverride, Icon xterm.svg
 Style xfile IconOverride, Icon xfile.svg
 Style emacs IconOverride, Icon emacs.svg
 Style xnedit IconOverride, Icon xnedit.svg
+Style surf IconOverride, Icon surf.svg
 
 # =====================================================================
 # 7. 经典的 CDE 系统菜单 (WindowMenu) 定义
