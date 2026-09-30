@@ -34,21 +34,30 @@ Style * ClickToFocus
 
 # 抗锯齿现代 Xft 字体注入，解决旧版 Helvetica 及编码缺失报错
 Style * Font "xft:Sans-Serif:bold:size=11"
-MenuStyle * Font "xft:Sans-Serif:size=11"
+
+# 移动：全部窗口实体跟随鼠标拖动
+OpaqueMoveSize unlimited
+
+# 缩放：实体实时缩放，跟随鼠标
+# ResizeOpaque：拖动边框时窗口内容实时重绘跟随鼠标
+# ResizeOutline：恢复虚线框模式（默认）
+Style * ResizeOpaque
+
+# 关闭拖动时弹出的小几何信息窗口（x,y宽高提示）
+HideGeometryWindow Move,Resize
 
 # =====================================================================
 # 3. 完美复刻 Motif 原生 3D 矢量按钮 (带点击下陷反馈)
 # =====================================================================
 # 按钮编号定义：1=左侧系统菜单, 2=右上最大化, 4=右上最小化/折叠
-ButtonStyle Reset
-ButtonStyle All ActiveUp   -- Flat
-ButtonStyle All ActiveDown -- Flat
-ButtonStyle All Inactive   -- Flat
+TitleStyle Centered Height 25
 
+ButtonStyle All - Clear
 # 左侧 1 号按钮：CDE 经典的“横向单条 3D 凸起”系统菜单键
 ButtonStyle 1 ActiveUp   (5 20x45@1 20x55@0 80x55@0 80x45@0 20x45@1)
 ButtonStyle 1 ActiveDown (5 20x45@0 20x55@1 80x55@1 80x45@1 20x45@0)
 ButtonStyle 1 Inactive   (5 20x45@1 20x55@0 80x55@0 80x45@0 20x45@1)
+ButtonStyle 1 - MwmDecorMenu
 
 # 右侧 4 号按钮：Motif 经典的“3D立体下凹小方块”
 ButtonStyle 4 ActiveUp   (5 40x40@0 40x60@1 60x60@1 60x40@1 40x40@0)
@@ -60,11 +69,9 @@ ButtonStyle 4 - MwmDecorMin
 ButtonStyle 2 ActiveUp   (5 30x30@0 30x70@1 70x70@1 70x30@1 30x30@0)
 ButtonStyle 2 ActiveDown (5 30x30@1 30x70@0 70x70@0 70x30@0 30x30@1)
 ButtonStyle 2 Inactive   (5 30x30@0 30x70@1 70x70@1 70x30@1 30x30@0)
-
 ButtonStyle 2 ToggledActiveUp   (5 20x20@1 20x80@0 80x80@0 80x20@0 20x20@1)
 ButtonStyle 2 ToggledActiveDown (5 20x20@0 20x80@1 80x80@1 80x20@1 20x20@0)
 ButtonStyle 2 ToggledInactive   (5 20x20@1 20x80@0 80x80@0 80x20@0 20x20@1)
-
 ButtonStyle 2 - MwmDecorMax
 
 # =====================================================================
@@ -72,7 +79,6 @@ ButtonStyle 2 - MwmDecorMax
 # =====================================================================
 # --- 鼠标对窗口组件的点击绑定 ---
 # 单击左上角 1 号键：原地弹出系统菜单，双击关闭
-
 DestroyFunc MyOneClick
 AddToFunc   MyOneClick
 + C Menu WindowMenu
@@ -108,13 +114,18 @@ Mouse 3 R A Menu MenuFvwmRoot
 # 现代习惯：Ctrl + Tab 完美在各个窗口间循环切换焦点，边框粉绿交替闪烁
 Key Tab A C WindowList CurrentAtEnd, IconifiedAtEnd
 
+# Alt 1/2 切换桌面
+Key 1 A M GotoDesk 0 0
+Key 2 A M GotoDesk 0 1
+
 # =====================================================================
-# 5. 经典 CDE 风格：最右侧虚拟桌面分页器 (FvwmPager)
+# 5. 组件风格
 # =====================================================================
 Colorset 4 Fore #e0e0e0, Back #36524d, Hilight #577d76, Shade #1c2b29
 Colorset 5 Fore white, Back #b24d7a, Hilight #e58ca3, Shade #661f3d
 
 Style FvwmPager* Sticky, NoTitle, StaysOnTop, NoHandles, WindowListSkip
+DestroyModuleConfig FvwmPager:*
 *FvwmPager: Colorset * 4
 *FvwmPager: HilightColorset * 5
 *FvwmPager: Font "xft:Sans-Serif:size=10"
@@ -123,23 +134,37 @@ Style FvwmPager* Sticky, NoTitle, StaysOnTop, NoHandles, WindowListSkip
 # 纵向排列 2 个虚拟桌面网格，精准钉在屏幕最右侧中间 (-0 像素)
 *FvwmPager: Rows 2
 *FvwmPager: Columns 1
-*FvwmPager: Geometry 100x200-0+200
+*FvwmPager: Geometry 100x200-0+20
 *FvwmPager: Label 0 "工作"
 *FvwmPager: Label 1 "娱乐"
+
 DesktopSize 1x1
+
+Style FvwmIdent*  StaysOnTop, WindowListSkip
+DestroyModuleConfig FvwmIdent:*
+*FvwmIdent: Colorset 4
+*FvwmIdent: Font "xft:sans-serif:size=10:antialias=True"
 
 # =====================================================================
 # 6. 最小化图标安全排队盒子 (完全兼容 FVWM3 现代语法)
 # =====================================================================
 # IconBox -120 +60 -0 -0：
 #   * -120 代表左边界起始于距离屏幕右边缘 120 像素处（留出给 Pager 和图标本身的横向空间）
-#   * +60  代表顶边界距离屏幕最顶端 60 像素（完美避开 macOS 的顶栏状态栏）
+#   * +500 代表顶边界距离屏幕最顶端 60 像素（完美避开 macOS 的顶栏状态栏）
 #   * -0 -0 代表限制底部和右边缘的绝对边界
 # IconFill right top：
 #   * 强制图标首要向右对齐，次要向上靠拢，从而在右上角整齐排队，绝不乱跑
-Style * IconBox -120 +60 -0 -0, IconGrid 20 20, IconFill right top
+Style * IconBox +830 +1100 -0 -0, IconGrid 48 48, IconFill left top
 Style * IconTitle, IconTitleRelief 3
 Style * Icon
+
+# 修正一些应用的图标
+ImagePath +:$HOME/.config/local_config/pixmaps
+Style urxvt IconOverride, Icon urxvt.svg
+Style xterm IconOverride, Icon xterm.svg
+Style xfile IconOverride, Icon xfile.svg
+Style emacs IconOverride, Icon emacs.svg
+Style xnedit IconOverride, Icon xnedit.svg
 
 # =====================================================================
 # 7. 经典的 CDE 系统菜单 (WindowMenu) 定义
@@ -161,6 +186,7 @@ AddToMenu WindowMenu "窗口控制"    Title
 +                    " 固定桌面    (&s)"   Stick True
 +                    " 取消固定    (&U)"   Stick False
 +                    ""                    Nop
++                    " 指认        (&I)"   Module FvwmIdent
 +                    " 关闭        (&C)"   Close
 
 DestroyMenu MenuSendToDesk
@@ -188,4 +214,3 @@ AddToMenu MenuFvwmRoot "桌面主菜单" Title
 DestroyFunc StartFunction
 AddToFunc StartFunction
 + I Module FvwmPager 0 1
-

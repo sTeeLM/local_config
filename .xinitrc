@@ -9,10 +9,10 @@ export LC_CTYPE=zh_CN.UTF-8
 export PATH=/opt/local/bin:/opt/local/sbin:$PATH
 
 # sync userdb
-/opt/local/bin/xim_rime -S -u  "~/.config/xim_rime"
+/opt/local/bin/xim_rime -S -u  "$HOME/.config/xim_rime"
 
 # start xim
-/opt/local/bin/xim_rime -v -u "~/.config/xim_rime" > "~/.config/xim_rime/xim_rime.log" 2>&1 &
+/opt/local/bin/xim_rime -v -u "$HOME/.config/xim_rime" > "$HOME/.config/xim_rime/xim_rime.log" 2>&1 &
 
 xrdb -merge ~/.Xdefaults
 
