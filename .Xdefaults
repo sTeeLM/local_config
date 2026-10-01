@@ -310,8 +310,8 @@ XFile.variable.terminal: urxvt -cd
 XFile.variable.textEditor: xnedit
 XFile.variable.imageViewer: nsxiv
 XFile.variable.imageEditor: xpaint
-XFile.variable.audioPlayer: mplayer
-XFile.variable.videoPlayer: mplayer
+XFile.variable.audioPlayer: ffplay
+XFile.variable.videoPlayer: ffplay
 XFile.variable.pdfViewer: gv
 XFile.variable.webBrowser: surf
 

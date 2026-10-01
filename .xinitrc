@@ -17,4 +17,4 @@ export PATH=/opt/local/bin:/opt/local/sbin:$PATH
 xrdb -merge ~/.Xdefaults
 
 exec /opt/local/bin/fvwm
-#exec /opt/local/bin/emwm -multiscreen
+# exec /opt/local/bin/emwm -multiscreen
