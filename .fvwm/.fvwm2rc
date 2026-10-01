@@ -1,9 +1,19 @@
 # =====================================================================
 #                 FVWM2/FVWM3 终极 CDE & Motif 复古风格配置文件
 # =====================================================================
+Xinerama PrimaryScreen 1
+Xinerama ON
+
+# 核心：强行定义两个显示器的绝对物理坐标与分辨率
+# 语法：XineramaSlsScreens 数量 屏幕0宽x屏幕0高+X偏移+Y偏移 屏幕1宽x屏幕1高+X偏移+Y偏移 ...
+# 假设你的两台显示器都是标准的 1080P (1920x1080)，左右并排排列：
+XineramaSlsScreens 2 800x480+0+0 2560x1440+800+0
+
+# 告诉 FVWM 在处理最大化(Maximize)和窗口放置(Placement)时，严格按照你上面切出来的边界执行
+XineramaSls ON
 
 # =====================================================================
-# 1. 经典 CDE "Crimson" 核心撞色色盘 (Colorset 语法)
+# 经典 CDE "Crimson" 核心撞色色盘 (Colorset 语法)
 # =====================================================================
 CleanupColorsets
 
@@ -19,7 +29,7 @@ Colorset 2 Fore white, Back #b24d7a, Hilight #e58ca3, Shade #661f3d
 Colorset 3 Fore white, Back #36524d, Hilight #577d76, Shade #1c2b29
 
 # =====================================================================
-# 2. 窗口管理器基础架构与核心机制
+# 窗口管理器基础架构与核心机制
 # =====================================================================
 # 应用色盘：非活动为墨绿(1)，活动聚焦为粉红(2)
 Style * Colorset 1, HilightColorset 2
@@ -27,7 +37,7 @@ Style * Colorset 1, HilightColorset 2
 # 开启 7 像素的经典 Motif 3D 浮雕粗边框
 Style * BorderWidth 7, HandleWidth 7
 Style * MWMDecor
-Style * MWMButtons
+Style * MWMButtons, HintOverride
 Style * MWMFunctions
 Style * MwmBorder
 
@@ -49,7 +59,7 @@ Style * ResizeOpaque
 HideGeometryWindow Move,Resize
 
 # =====================================================================
-# 3. 完美复刻 Motif 原生 3D 矢量按钮 (带点击下陷反馈)
+# 完美复刻 Motif 原生 3D 矢量按钮 (带点击下陷反馈)
 # =====================================================================
 # 按钮编号定义：1=左侧系统菜单, 2=右上最大化, 4=右上最小化/折叠
 TitleStyle Centered Height 25
@@ -79,7 +89,7 @@ ButtonStyle 2 ToggledInactive   (5 20x20@1 20x80@1 80x80@0 80x20@0 20x20@1)
 ButtonStyle 2 - MwmDecorMax
 
 # =====================================================================
-# 4. 极致顺滑的极客键盘与鼠标交互绑定
+# 极致顺滑的极客键盘与鼠标交互绑定
 # =====================================================================
 # --- 鼠标对窗口组件的点击绑定 ---
 # 单击左上角 1 号键：原地弹出系统菜单，双击关闭
@@ -114,7 +124,6 @@ Mouse 1 I   A   Iconify
 Mouse 3 W   A   ThisWindow (FvwmPager) Menu MenuFvwmRoot
 Mouse 3 R   A   Menu MenuFvwmRoot
 
-
 # --- 全局快捷键流 (Key Bindings) ---
 # 现代习惯：Ctrl + Tab 完美在各个窗口间循环切换焦点，边框粉绿交替闪烁
 Key Tab A C WindowList CurrentAtEnd, IconifiedAtEnd
@@ -124,7 +133,7 @@ Key 1 A M GotoDesk 0 0
 Key 2 A M GotoDesk 0 1
 
 # =====================================================================
-# 5. 组件风格
+# 组件风格
 # =====================================================================
 Colorset 4 Fore #e0e0e0, Back #36524d, Hilight #577d76, Shade #1c2b29
 Colorset 5 Fore white, Back #b24d7a, Hilight #e58ca3, Shade #661f3d
@@ -151,7 +160,7 @@ DestroyModuleConfig FvwmIdent:*
 *FvwmIdent: Font "xft:sans-serif:size=10:antialias=True"
 
 # =====================================================================
-# 6. 最小化图标安全排队盒子 (完全兼容 FVWM3 现代语法)
+# 最小化图标安全排队盒子 (完全兼容 FVWM3 现代语法)
 # =====================================================================
 # IconBox -120 +60 -0 -0：
 #   * -120 代表左边界起始于距离屏幕右边缘 120 像素处（留出给 Pager 和图标本身的横向空间）
@@ -173,7 +182,7 @@ Style xnedit IconOverride, Icon xnedit.svg
 Style surf IconOverride, Icon surf.svg
 
 # =====================================================================
-# 7. 经典的 CDE 系统菜单 (WindowMenu) 定义
+# 经典的 CDE 系统菜单 (WindowMenu) 定义
 # =====================================================================
 MenuStyle * Mwm
 MenuStyle * MenuColorset 3, ActiveColorset 2
@@ -216,7 +225,7 @@ AddToMenu MenuFvwmRoot "桌面主菜单" Title
 
 
 # =====================================================================
-# 8. 系统初始化自动加载组件
+# 系统初始化自动加载组件
 # =====================================================================
 DestroyFunc StartFunction
 AddToFunc StartFunction

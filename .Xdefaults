@@ -309,7 +309,7 @@ XFile*toolsMenu.terminal.positionIndex: 0
 XFile.variable.terminal: urxvt -cd
 XFile.variable.textEditor: xnedit
 XFile.variable.imageViewer: nsxiv
-XFile.variable.imageEditor: xpaint
+XFile.variable.imageEditor: mtpaint
 XFile.variable.audioPlayer: ffplay
 XFile.variable.videoPlayer: ffplay
 XFile.variable.pdfViewer: gv
