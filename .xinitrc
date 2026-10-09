@@ -23,5 +23,7 @@ export PATH=/opt/local/bin:/opt/local/sbin:$PATH
 
 xrdb -merge ~/.Xdefaults
 
+# exec starte16
+# exec mwm -multiscreen
 exec /opt/local/bin/fvwm
 # exec /opt/local/bin/emwm -multiscreen

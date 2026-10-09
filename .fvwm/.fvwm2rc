@@ -1,16 +1,6 @@
 # =====================================================================
 #                 FVWM2/FVWM3 终极 CDE & Motif 复古风格配置文件
 # =====================================================================
-Xinerama PrimaryScreen 1
-Xinerama ON
-
-# 核心：强行定义两个显示器的绝对物理坐标与分辨率
-# 语法：XineramaSlsScreens 数量 屏幕0宽x屏幕0高+X偏移+Y偏移 屏幕1宽x屏幕1高+X偏移+Y偏移 ...
-# 假设你的两台显示器都是标准的 1080P (1920x1080)，左右并排排列：
-XineramaSlsScreens 2 800x480+0+0 2560x1440+800+0
-
-# 告诉 FVWM 在处理最大化(Maximize)和窗口放置(Placement)时，严格按照你上面切出来的边界执行
-XineramaSls ON
 
 # =====================================================================
 # 经典 CDE "Crimson" 核心撞色色盘 (Colorset 语法)
@@ -57,6 +47,9 @@ Style * ResizeOpaque
 
 # 关闭拖动时弹出的小几何信息窗口（x,y宽高提示）
 HideGeometryWindow Move,Resize
+
+# 双击间隔
+ClickTime 250
 
 # =====================================================================
 # 完美复刻 Motif 原生 3D 矢量按钮 (带点击下陷反馈)
@@ -131,6 +124,8 @@ Key Tab A C WindowList CurrentAtEnd, IconifiedAtEnd
 # Alt 1/2 切换桌面
 Key 1 A M GotoDesk 0 0
 Key 2 A M GotoDesk 0 1
+Key 3 A M GotoDesk 0 2
+Key 4 A M GotoDesk 0 3
 
 # =====================================================================
 # 组件风格
@@ -145,12 +140,34 @@ DestroyModuleConfig FvwmPager:*
 *FvwmPager: Font "xft:Sans-Serif:size=10"
 *FvwmPager: SmallFont "xft:Sans-Serif:size=9"
 *FvwmPager: WindowColorsets 4 5
-# 纵向排列 2 个虚拟桌面网格，精准钉在屏幕最右侧中间 (-0 像素)
-*FvwmPager: Rows 2
+# 纵向排列 4 个虚拟桌面网格，精准钉在屏幕最右侧中间 (-0 像素)
+*FvwmPager: Rows 4
 *FvwmPager: Columns 1
-*FvwmPager: Geometry 100x200-0+40
+*FvwmPager: Geometry 100x400-0+40
 *FvwmPager: Label 0 "工作"
-*FvwmPager: Label 1 "娱乐"
+*FvwmPager: Label 1 "运维"
+*FvwmPager: Label 2 "读书"
+*FvwmPager: Label 3 "娱乐"
+
+
+# 开启 Balloons 功能（All 表示无论 Pager 处于何种状态都显示）
+*FvwmPager: Balloons All
+
+# 自定义气泡中显示的内容格式（例如：显示窗口的完整标题 %t 或是资源名 %r）
+*FvwmPager: BalloonStringFormat %t
+
+# 设置气泡的字体
+*FvwmPager: BalloonFont "xft:Sans-Serif:size=8"
+
+# 设置气泡的前景色和背景色
+*FvwmPager: BalloonFore Black
+*FvwmPager: BalloonBack Yellow
+
+# 开启 Pager 内部迷你窗口的 3D 边框效果
+*FvwmPager: Window3DBorders
+
+# （可选）调整迷你窗口的边框宽度，以便更好地展现 3D 浮雕效果（默认通常为 1）
+*FvwmPager: WindowBorderWidth 2
 
 DesktopSize 1x1
 
@@ -208,7 +225,9 @@ AddToMenu WindowMenu "窗口控制"    Title
 DestroyMenu MenuSendToDesk
 AddToMenu MenuSendToDesk "移动到桌面" Title
 + "桌面 工作        (&0)"        MoveToDesk 0 0
-+ "桌面 娱乐        (&1)"        MoveToDesk 0 1
++ "桌面 运维        (&1)"        MoveToDesk 0 1
++ "桌面 娱乐        (&2)"        MoveToDesk 0 2
++ "桌面 读书        (&3)"        MoveToDesk 0 3
 
 DestroyMenu MenuFvwmRoot
 AddToMenu MenuFvwmRoot "桌面主菜单" Title
@@ -217,7 +236,9 @@ AddToMenu MenuFvwmRoot "桌面主菜单" Title
 +                      " 打开 Emacs    (&E)"        Exec emacsclient -c &
 +                      " 打开 XFile    (&F)"        Exec xfile &
 +                      " 打开 XNEdit   (&N)"        Exec xnedit &
++                      " 打开 MTPaint  (&P)"        Exec mtpaint &
 +                      ""                               Nop
++                      " FVWM Console  (&C)"        FvwmConsole
 +                      " 刷新桌面屏幕  (&L)"        Refresh
 +                      " 重新加载配置  (&R)"        Restart
 +                      ""                               Nop
@@ -229,4 +250,4 @@ AddToMenu MenuFvwmRoot "桌面主菜单" Title
 # =====================================================================
 DestroyFunc StartFunction
 AddToFunc StartFunction
-+ I Module FvwmPager 0 1
++ I Module FvwmPager 0 3

@@ -8,6 +8,52 @@
 *renderTable.default.fontStyle: Regular
 
 ! ==============================================================================
+! XTerm
+! ==============================================================================
+
+! 核心前景色(日常输入的普通文字颜色)
+! 推荐使用深木炭色或 CDE 官方深褐色, 比纯黑更柔和
+xterm*foreground: #1c1c1c
+
+! 使用 CDE 经典米黄色(Desert 方案)作为背景色
+xterm*background: #C2BBA7
+
+! 粗体字颜色 (Bold 文本, 例如长列表中的目录名)
+xterm*boldColor: #4a0000
+
+! 鼠标划选文本时的反色效果
+xterm*highlightColor: #1c1c1c
+xterm*highlightTextColor: #d6cfb4
+
+! 强制 xterm 启用 16 色/256 色彩色模式
+xterm*colorMode: true
+
+! 允许粗体字单独着色, 而不是只加粗不显色
+xterm*boldColors: true
+
+! 强制在文本输入时继承 X11 颜色设置
+xterm*dynamicColors: true
+
+! ANSI 16 色彩定义(重置命令输出, Vim, ls --color 的颜色)
+! 为了在米黄背景上清晰可见, 调暗了标准的亮色系
+
+! 强制启用本地化与 UTF-8 模式
+xterm*locale: true
+xterm*utf8: 1
+xterm*vt100*utf8: 1
+
+! 启动默认字体
+xterm*vt100*font: -misc-fixed-medium-r-normal--18-120-100-100-c-90-iso10646-1
+
+! 启用经典的剪贴板互通
+xterm*selectToClipboard: true
+
+! 绑定 Meta+C 为复制, Meta+V 为粘贴
+xterm*VT100*translations: #override \n\
+    Meta <Key>C:       copy-selection(CLIPBOARD) \n\
+    Meta <Key>V:       insert-selection(CLIPBOARD)
+
+! ==============================================================================
 ! EMWM (emwm) 
 ! ==============================================================================
 
@@ -226,9 +272,11 @@ Emwm*useRootWindow: False
 
 ! --- 字体与渲染 (Xft 现代字体支持) ---
 ! 推荐安装 "DejaVu Sans Mono" 和 "WenQuanYi Micro Hei" (文泉驿微米黑) 以完美显示中文
-urxvt*font:                  xft:Ubuntu Mono:size=16,xft:Maple Mono NF CN:size=16
-urxvt*boldFont:              xft:Ubuntu Mono:bold:size=16,xft:Maple Mono NF CN:size=16
-! 字符间距微调：防止部分英文字体或中文字体在 urxvt 中因字宽计算错误产生重叠
+URxvt*font:       xft:Maple Mono NF CN:pixelsize=20
+URxvt*boldFont:   xft:Maple Mono NF CN:pixelsize=20:style=Bold
+URxvt*italicFont: xft:Maple Mono NF CN:pixelsize=20:style=Italic
+
+! 字符间距微调:防止部分英文字体或中文字体在 urxvt 中因字宽计算错误产生重叠
 urxvt*letterSpace:           -1
 
 ! --- 基础窗口与滚动条设置 ---
@@ -251,7 +299,7 @@ urxvt*url-launcher:          surf
 urxvt*matcher.button:        1
 
 ! --- 快捷键映射 (键盘增强) ---
-! 仿现代终端快捷键：Command+C 复制，Command+V 粘贴
+! 仿现代终端快捷键: Command+C 复制, Command+V 粘贴
 urxvt*keysym.M-c:           eval:selection_to_clipboard
 urxvt*keysym.M-v:           eval:paste_clipboard
 ! --- 优雅现代暗色调配色 (Nord 配色方案) ---
