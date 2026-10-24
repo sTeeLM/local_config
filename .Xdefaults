@@ -272,9 +272,9 @@ Emwm*useRootWindow: False
 
 ! --- 字体与渲染 (Xft 现代字体支持) ---
 ! 推荐安装 "DejaVu Sans Mono" 和 "WenQuanYi Micro Hei" (文泉驿微米黑) 以完美显示中文
-URxvt*font:       xft:Maple Mono NF CN:pixelsize=20
-URxvt*boldFont:   xft:Maple Mono NF CN:pixelsize=20:style=Bold
-URxvt*italicFont: xft:Maple Mono NF CN:pixelsize=20:style=Italic
+urxvt*font:       xft:Ubuntu Mono:pixelsize=20,xft:Maple Mono NF CN:pixelsize=20
+urxvt*boldFont:   xft:Ubuntu Mono:pixelsize=20:style=Bold,xft:Maple Mono NF CN:pixelsize=20:style=Bold
+urxvt*italicFont: xft:Ubuntu Mono:pixelsize=20:style=Italic,xft:Maple Mono NF CN:pixelsize=20:style=Italic
 
 ! 字符间距微调:防止部分英文字体或中文字体在 urxvt 中因字宽计算错误产生重叠
 urxvt*letterSpace:           -1
@@ -284,11 +284,30 @@ urxvt*depth:                 32
 urxvt*geometry:              90x25
 urxvt*loginShell:            true
 urxvt*internalBorder:        8
-urxvt*scrollBar:             false
-urxvt*scrollBar_right:       false
-urxvt*scrollTtyOutput:       false
+
+! 显示strollbar
+urxvt*scrollBar:             true
+urxvt*scrollBar_right:       true
+
+! 启用鼠标滚轮滚动核心支持
+urxvt*mouseWheelScrollPage:  false
+
+! 设置每次滚动轮滑动的行数(通常 3-5 行比较舒适)
+URxvt.scrollLines: 5
+
+! 当有新的 TTY 输出时, 自动滚动到最底部跟随最新内容
+urxvt*scrollTtyOutput:       true
+
+! 当你已经往上翻页阅读缓存时, 锁定当前视图, 不要被新输出强制拽回底部
 urxvt*scrollWithBuffer:      true
+
+! 当你在最底部输入新按键时, 也自动滚动到最底部
 urxvt*scrollKeypress:        true
+
+! 启用二级屏幕(全屏应用如 Vim/Less 运行时使用的屏幕)
+urxvt*secondaryScreen: true
+urxvt*secondaryScroll: false
+
 urxvt*saveLines:             10000
 
 ! --- 扩展与功能 (Perl Extensions) ---
@@ -358,8 +377,8 @@ XFile.variable.terminal: urxvt -cd
 XFile.variable.textEditor: xnedit
 XFile.variable.imageViewer: nsxiv
 XFile.variable.imageEditor: mtpaint
-XFile.variable.audioPlayer: ffplay
-XFile.variable.videoPlayer: ffplay
+XFile.variable.audioPlayer: mplayer
+XFile.variable.videoPlayer: mplayer
 XFile.variable.pdfViewer: gv
 XFile.variable.webBrowser: surf
 
