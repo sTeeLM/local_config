@@ -233,8 +233,8 @@ DestroyMenu MenuFvwmRoot
 AddToMenu MenuFvwmRoot "桌面主菜单" Title
 +                      " 打开 Xterm    (&T)"        Exec xterm &
 +                      " 打开 Urxvt    (&U)"        Exec urxvt &
-+                      " 打开 Xfce-term(&I)"        Exec xfce4-terminal &
-+                      " 打开 Emacs    (&E)"        Exec emacsclient -c >> ~/.emacs.d/start.log 2>&1 &
++                      " 打开 XfceT    (&I)"        Exec xfce4-terminal &
++                      " 打开 Emacs    (&E)"        Exec emacsclient -c > ~/.emacs.d/start.log 2>&1 &
 +                      " 打开 XFile    (&F)"        Exec xfile &
 +                      " 打开 XNEdit   (&N)"        Exec xnedit &
 +                      " 打开 MTPaint  (&P)"        Exec mtpaint &
